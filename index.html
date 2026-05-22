@@ -75,7 +75,19 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            background: linear-gradient(45deg, rgba(128, 0, 32, 0.8), rgba(212, 175, 55, 0.8));
+            background: #000;
+            overflow: hidden;
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            opacity: 0.72;
+            z-index: 0;
         }
 
         .floating-elements {
@@ -134,9 +146,9 @@
             color: white;
             animation: fadeInUp 1.5s ease-out;
             padding: 2rem;
-            background: rgba(0, 0, 0, 0.3);
+            /* background: rgba(0, 0, 0, 0.3); */
             border-radius: 20px;
-            backdrop-filter: blur(10px);
+            /* backdrop-filter: blur(10px); */
         }
 
         @keyframes fadeInUp {
@@ -546,6 +558,123 @@
             transform: translateY(-2px);
         }
 
+        .music-btn {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 9999;
+            background: linear-gradient(135deg, #800020, #D4AF37);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            font-size: 1.4rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            animation: pulse 2s infinite;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Splash / Enter overlay */
+        .splash-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.8s ease;
+            background-image: url('image/PreWedding.jpeg');
+            background-size: cover;
+            background-position: center top;
+        }
+
+        .splash-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+        }
+
+        .splash-overlay.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .splash-card {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+            padding: 2.5rem 2rem;
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            max-width: 420px;
+            width: 90%;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .splash-hearts {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        .splash-title {
+            font-size: 2.6rem;
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            margin-bottom: 0.4rem;
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .splash-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-style: italic;
+            margin-bottom: 1.8rem;
+        }
+
+        .splash-btn {
+            background: linear-gradient(135deg, #800020, #D4AF37);
+            color: white;
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(128, 0, 32, 0.4);
+            letter-spacing: 1px;
+            transition: transform 0.2s;
+        }
+
+        .splash-btn:hover {
+            transform: scale(1.06);
+        }
+
+        .splash-note {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
         .footer {
             background: linear-gradient(135deg, #800020, #D4AF37);
             color: white;
@@ -665,9 +794,24 @@
 <body>
 
     <!-- Background Music -->
-    <audio id="bgMusic" loop preload="auto">
-        <source src="music/wedding-music.mp3" type="audio/mp3">
+    <audio id="bgMusic" loop preload="auto" autoplay>
+        <source src="music/0417. Blue Sky - AShamaluevMusic.mp3" type="audio/mp3">
     </audio>
+
+    <!-- Music Toggle Button -->
+    <button class="music-btn" id="musicBtn" title="Toggle Music" onclick="toggleMusic()">🎵</button>
+
+    <!-- Splash Enter Overlay -->
+    <div class="splash-overlay" id="splashOverlay" onclick="enterSite()">
+        <div class="splash-card">
+            <div class="splash-hearts">💍</div>
+            <div class="splash-title">Selva & Aparna</div>
+            <div class="splash-subtitle">Together Forever</div>
+            <div class="decorative-border" style="margin:1rem 0;"></div>
+            <button class="splash-btn">View Invitation</button>
+            <!-- <div class="splash-note">Click anywhere to continue</div> -->
+        </div>
+    </div>
 
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
@@ -678,19 +822,22 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
-        <div class="floating-elements">
+        <!-- Pre-Wedding Photo Background -->
+        <img class="hero-bg-image" src="image/PreWedding.jpeg" alt="Selva & Aparna Pre-Wedding Photo">
+
+        <div class="floating-elements" style="z-index:1;">
             <div class="floating-element"><i class="fas fa-heart"></i></div>
             <div class="floating-element"><i class="fas fa-star"></i></div>
             <div class="floating-element"><i class="fas fa-glass-cheers"></i></div>
             <div class="floating-element"><i class="fas fa-music"></i></div>
         </div>
 
-        <div class="hero-content">
-            <h1 class="hero-title">Selva & Aparna</h1>
-            <p class="hero-subtitle">Together Forever</p>
-            <div class="decorative-border"></div>
+        <div class="hero-content" style="position:relative; z-index:2;">
+            <!-- <h1 class="hero-title">Selva & Aparna</h1>
+            <p class="hero-subtitle">Together Forever</p> -->
+            <!-- <div class="decorative-border"></div> -->
             <button class="submit-btn" onclick="scrollToInvitation()" style="width: auto; padding: 1rem 2rem;">
-                <i class="fas fa-scroll"></i> View Invitation
+                <i class="fas fa-scroll"></i> View More
             </button>
         </div>
     </section>
@@ -703,21 +850,21 @@
             </h2>
             <p class="photo-display-subtitle">Cherished memories of our journey together</p>
 
-            <div class="photo-display-grid" id="photoDisplayGrid">
+            <!-- <div class="photo-display-grid" id="photoDisplayGrid">
                 <!-- Groom Photo -->
-                <div class="photo-display-box" id="displayBox2">
+            <!-- <div class="photo-display-box" id="displayBox2">
                     <img class="photo-display-image" src="image/boy.png" id="displayImage2" alt="Selva- The Groom">
                     <h3 class="photo-display-title-text">Selva</h3>
                     <p class="photo-display-description">The Groom</p>
-                </div>
+                </div> -->
 
-                <!-- Bride Photo -->
-                <div class="photo-display-box" id="displayBox1">
+            <!-- Bride Photo -->
+            <!-- <div class="photo-display-box" id="displayBox1">
                     <img class="photo-display-image" src="image/girl.png" id="displayImage1" alt="Aparna - The Bride">
                     <h3 class="photo-display-title-text">Aparna</h3>
                     <p class="photo-display-description">The Bride</p>
-                </div>
-            </div>
+                </div> -->
+        </div>
         </div>
     </section>
 
@@ -750,14 +897,14 @@
                     </div>
                 </div>
 
-                <div class="detail-card fade-in">
+                <!-- <div class="detail-card fade-in">
                     <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <div class="detail-title">Groom's Residence</div>
                     <div class="detail-text">
                         <strong>Porulur,oddenchathiram</strong><br>
                         Dindigul, Tamilnadu
                     </div>
-                </div>
+                </div> -->
 
                 <div class="detail-card fade-in">
                     <div class="detail-icon"><i class="fas fa-home"></i></div>
@@ -768,13 +915,13 @@
                     </div>
                 </div>
 
-                <div class="detail-card fade-in">
+                <!-- <div class="detail-card fade-in">
                     <div class="detail-icon"><i class="fas fa-phone"></i></div>
                     <div class="detail-title">Contact</div>
                     <div class="detail-text">
                         +91 9087710142
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <div class="love-quote">
@@ -913,29 +1060,37 @@
             hero.style.transform = `translateY(${scrolled * 0.3}px)`;
         });
 
-        // Background music
+        // Background music — plays on splash screen click (satisfies browser autoplay policy)
         const bgMusic = document.getElementById("bgMusic");
+        const musicBtn = document.getElementById("musicBtn");
+        const splashOverlay = document.getElementById("splashOverlay");
         bgMusic.volume = 0.4;
-        let musicStarted = false;
+        let musicPlaying = false;
 
-        function startMusic() {
-            if (!musicStarted) {
-                bgMusic.play().then(() => {
-                    musicStarted = true;
-                    removeMusicListeners();
-                }).catch(() => { });
+        function setPlaying(state) {
+            musicPlaying = state;
+            musicBtn.textContent = state ? '⏸' : '🎵';
+            musicBtn.title = state ? 'Pause Music' : 'Play Music';
+        }
+
+        // Called when user clicks the splash overlay
+        function enterSite() {
+            // Dismiss splash
+            splashOverlay.classList.add('hide');
+            setTimeout(() => splashOverlay.style.display = 'none', 800);
+
+            // Start music — this is inside a user click event, so browser always allows it
+            bgMusic.play().then(() => setPlaying(true)).catch(() => { });
+        }
+
+        function toggleMusic() {
+            if (musicPlaying) {
+                bgMusic.pause();
+                setPlaying(false);
+            } else {
+                bgMusic.play().then(() => setPlaying(true)).catch(() => { });
             }
         }
-
-        function removeMusicListeners() {
-            document.removeEventListener("click", startMusic);
-            document.removeEventListener("touchstart", startMusic);
-            document.removeEventListener("scroll", startMusic);
-        }
-
-        document.addEventListener("click", startMusic);
-        document.addEventListener("touchstart", startMusic);
-        document.addEventListener("scroll", startMusic, { passive: true });
 
         console.log('Wedding invitation loaded successfully!');
     </script>
