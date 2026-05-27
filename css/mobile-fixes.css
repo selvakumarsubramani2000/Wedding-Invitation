@@ -1,0 +1,155 @@
+/* ========================================
+   MOBILE-FIRST FIXES & OPTIMIZATIONS
+   Additional mobile compatibility
+   ======================================== */
+
+/* ===== iOS SAFARI FIXES ===== */
+/* Fix 100vh on mobile (address bar issue) */
+.hero {
+  min-height: 100vh;
+  height: 100vh; /* Force full viewport height */
+  min-height: -webkit-fill-available;
+  height: -webkit-fill-available;
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
+/* Prevent bounce scrolling on iOS */
+body {
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ===== TOUCH OPTIMIZATIONS ===== */
+/* Minimum touch target size (44px x 44px) */
+.navbar__link,
+.navbar__toggle,
+.fab,
+.btn {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Remove tap highlight on all interactive elements */
+a, button, .navbar__link, .fab {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ===== MOBILE TYPOGRAPHY ===== */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px; /* Smaller base for very small screens */
+  }
+  
+  .hero__title {
+    font-size: clamp(1.5rem, 10vw, 2.5rem);
+  }
+  
+  .couple__name {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+/* ===== LANDSCAPE ORIENTATION ===== */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: var(--space-3xl) 0;
+  }
+  
+  .hero__content {
+    padding: var(--space-sm) var(--space-md);
+  }
+  
+  .navbar {
+    padding: var(--space-xs) var(--container-padding);
+  }
+}
+
+/* ===== SMALL MOBILE (320px - 374px) ===== */
+@media (max-width: 374px) {
+  .countdown__item {
+    min-width: 65px;
+    padding: var(--space-sm);
+  }
+  
+  .countdown__number {
+    font-size: var(--font-size-xl);
+  }
+  
+  .couple__image {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .fab {
+    width: 48px;
+    height: 48px;
+    font-size: var(--font-size-base);
+  }
+  
+  .fab--music {
+    bottom: var(--space-md);
+    right: var(--space-md);
+  }
+  
+  .fab--scroll-top {
+    bottom: calc(var(--space-md) + 55px);
+    right: var(--space-md);
+  }
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+/* Reduce animations on low-end devices */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===== PREVENT ZOOM ON INPUT FOCUS (iOS) ===== */
+@media (max-width: 767px) {
+  input, textarea, select {
+    font-size: 16px !important; /* Prevents iOS zoom */
+  }
+}
+
+/* ===== SAFE AREA FOR NOTCHED DEVICES ===== */
+@supports (padding: max(0px)) {
+  .navbar {
+    padding-left: max(var(--container-padding), env(safe-area-inset-left));
+    padding-right: max(var(--container-padding), env(safe-area-inset-right));
+  }
+  
+  .fab--music {
+    right: max(var(--space-xl), env(safe-area-inset-right));
+    bottom: max(var(--space-xl), env(safe-area-inset-bottom));
+  }
+  
+  .fab--scroll-top {
+    right: max(var(--space-xl), env(safe-area-inset-right));
+    bottom: max(calc(var(--space-xl) + 70px), calc(env(safe-area-inset-bottom) + 70px));
+  }
+}
+
+/* ===== HOVER STATES ON TOUCH DEVICES ===== */
+/* Only show hover effects on devices that support hover */
+@media (hover: none) and (pointer: coarse) {
+  .btn:hover,
+  .card:hover,
+  .couple__card:hover,
+  .event__item:hover,
+  .location__card:hover {
+    transform: none; /* Disable hover lift on touch */
+  }
+  
+  /* Keep active/pressed states for touch feedback */
+  .btn:active {
+    transform: scale(0.98);
+  }
+}

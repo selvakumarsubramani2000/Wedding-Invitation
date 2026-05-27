@@ -1,0 +1,129 @@
+/* ========================================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   Modern Vibrant Rose Gold Wedding Theme
+   ======================================== */
+
+:root {
+  /* ===== COLOR PALETTE ===== */
+
+  /* Primary Colors - Elegant Burgundy Theme (Footer-inspired) */
+  --color-primary: #6B2737;           /* Deep Burgundy */
+  --color-primary-light: #9B4456;     /* Light Burgundy */
+  --color-primary-dark: #4A1825;      /* Darker Burgundy */
+
+  --color-secondary: #4A154B;         /* Deep Plum */
+  --color-secondary-light: #6B2A6C;   /* Light Plum */
+  --color-secondary-dark: #2F0A30;    /* Darker Plum */
+
+  /* Accent Colors */
+  --color-accent: #FFD700;            /* Gold */
+  --color-accent-warm: #D4AF37;       /* Warm Gold */
+  --color-accent-rose: #C9A0DC;       /* Soft Rose (subtle accent) */
+  
+  /* Neutral Colors */
+  --color-white: #FFFFFF;
+  --color-cream: #FFF9F0;             /* Soft Cream */
+  --color-light-gray: #F5F5F5;
+  --color-gray: #9E9E9E;
+  --color-dark-gray: #616161;
+  --color-charcoal: #2C2C2C;
+  --color-black: #000000;
+  
+  /* Deep Tones */
+  --color-plum: #4A154B;              /* Deep Plum */
+  --color-burgundy: #6B2737;          /* Deep Burgundy */
+  
+  /* ===== GRADIENTS ===== */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--color-accent-warm) 0%, var(--color-accent) 100%);
+  --gradient-hero: linear-gradient(135deg, rgba(107, 39, 55, 0.3) 0%, rgba(74, 21, 75, 0.3) 100%);
+  --gradient-hero-mobile: linear-gradient(135deg, rgba(107, 39, 55, 0.2) 0%, rgba(74, 21, 75, 0.2) 100%);
+  --gradient-overlay: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%);
+  
+  /* ===== TYPOGRAPHY ===== */
+
+  /* Font Families */
+  --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-script: 'Alex Brush', cursive;
+  
+  /* Font Sizes - Mobile First */
+  --font-size-xs: 0.75rem;      /* 12px */
+  --font-size-sm: 0.875rem;     /* 14px */
+  --font-size-base: 1rem;       /* 16px */
+  --font-size-md: 1.125rem;     /* 18px */
+  --font-size-lg: 1.25rem;      /* 20px */
+  --font-size-xl: 1.5rem;       /* 24px */
+  --font-size-2xl: 2rem;        /* 32px */
+  --font-size-3xl: 2.5rem;      /* 40px */
+  --font-size-4xl: 3rem;        /* 48px */
+  --font-size-5xl: 3.5rem;      /* 56px */
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* ===== SPACING SYSTEM ===== */
+  --space-xs: 0.25rem;      /* 4px */
+  --space-sm: 0.5rem;       /* 8px */
+  --space-md: 1rem;         /* 16px */
+  --space-lg: 1.5rem;       /* 24px */
+  --space-xl: 2rem;         /* 32px */
+  --space-2xl: 3rem;        /* 48px */
+  --space-3xl: 4rem;        /* 64px */
+  --space-4xl: 6rem;        /* 96px */
+  
+  /* ===== LAYOUT ===== */
+  --container-max-width: 1200px;
+  --container-padding: var(--space-md);
+  --section-padding-mobile: var(--space-3xl);
+  --section-padding-desktop: var(--space-4xl);
+  
+  /* ===== BORDERS ===== */
+  --border-radius-sm: 0.5rem;    /* 8px */
+  --border-radius-md: 1rem;      /* 16px */
+  --border-radius-lg: 1.5rem;    /* 24px */
+  --border-radius-xl: 2rem;      /* 32px */
+  --border-radius-full: 9999px;
+  
+  --border-width: 1px;
+  --border-width-thick: 2px;
+  
+  /* ===== SHADOWS ===== */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.18);
+  --shadow-2xl: 0 20px 40px rgba(0, 0, 0, 0.2);
+  
+  /* ===== TRANSITIONS ===== */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 300ms ease-in-out;
+  --transition-slow: 500ms ease-in-out;
+  
+  /* ===== Z-INDEX SCALE ===== */
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1020;
+  --z-index-fixed: 1030;
+  --z-index-modal-backdrop: 1040;
+  --z-index-modal: 1050;
+  --z-index-popover: 1060;
+  --z-index-tooltip: 1070;
+}
+
+/* ===== RESPONSIVE BREAKPOINTS (for media queries) ===== */
+/* Use these in your media queries:
+   Mobile: default (320px - 767px)
+   Tablet: min-width: 768px
+   Desktop: min-width: 1024px
+   Large Desktop: min-width: 1440px
+*/

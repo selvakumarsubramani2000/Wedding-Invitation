@@ -1,0 +1,237 @@
+/* ========================================
+   REUSABLE COMPONENTS
+   Buttons, Cards, Navigation, etc.
+   ======================================== */
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--border-radius-full);
+  transition: all var(--transition-base);
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  /* Mobile touch optimization */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  min-height: 44px; /* iOS minimum touch target */
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  color: var(--color-white);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: var(--gradient-accent);
+  color: var(--color-charcoal);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-primary);
+  border: var(--border-width-thick) solid var(--color-primary);
+}
+
+.btn-outline:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.card-title {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-md);
+  color: var(--color-primary);
+}
+
+.card-text {
+  color: var(--color-dark-gray);
+  line-height: var(--line-height-relaxed);
+}
+
+/* ===== ICON BOXES ===== */
+.icon-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-md);
+}
+
+.icon-box__icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-primary);
+  border-radius: var(--border-radius-md);
+  color: var(--color-white);
+  font-size: var(--font-size-2xl);
+}
+
+.icon-box__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-charcoal);
+}
+
+.icon-box__text {
+  font-size: var(--font-size-base);
+  color: var(--color-dark-gray);
+}
+
+/* ===== DIVIDER ===== */
+.divider {
+  height: 2px;
+  background: var(--gradient-primary);
+  border: none;
+  margin: var(--space-2xl) auto;
+  max-width: 200px;
+  border-radius: var(--border-radius-full);
+}
+
+/* ===== DECORATIVE HEARTS ===== */
+.decorative-hearts {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-base);
+  color: var(--color-accent);
+  margin: var(--space-sm) 0;
+}
+
+/* ===== BADGE ===== */
+.badge {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--border-radius-full);
+  background: var(--gradient-primary);
+  color: var(--color-white);
+}
+
+/* ===== FLOATING ACTION BUTTONS ===== */
+.fab {
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-primary);
+  color: var(--color-white);
+  border-radius: var(--border-radius-full);
+  box-shadow: var(--shadow-xl);
+  font-size: var(--font-size-xl);
+  transition: all var(--transition-base);
+  z-index: var(--z-index-fixed);
+  cursor: pointer;
+  border: none;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-2xl);
+}
+
+.fab:active {
+  transform: scale(0.95);
+}
+
+/* Music Button - Bottom Right */
+.fab--music {
+  bottom: var(--space-xl);
+  right: var(--space-xl);
+}
+
+/* Scroll to Top Button - Above Music Button */
+.fab--scroll-top {
+  bottom: calc(var(--space-xl) + 70px);
+  right: var(--space-xl);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+}
+
+.fab--scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.fab--scroll-top:hover {
+  transform: scale(1.1) translateY(-2px);
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+  .fab {
+    width: 50px;
+    height: 50px;
+    font-size: var(--font-size-lg);
+  }
+
+  .fab--music {
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+  }
+
+  .fab--scroll-top {
+    bottom: calc(var(--space-lg) + 60px);
+    right: var(--space-lg);
+  }
+}
+
+/* ===== LOADING SPINNER ===== */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 107, 157, 0.2);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
