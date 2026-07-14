@@ -38,10 +38,10 @@ splashOverlay.addEventListener('click', (e) => {
 function enterSite() {
   // Hide splash screen
   splashOverlay.classList.add('hidden');
-  
+
   // Start music (user interaction allows autoplay)
   playMusic();
-  
+
   // Save preference
   localStorage.setItem('hasVisited', 'true');
 }
@@ -122,14 +122,14 @@ window.addEventListener('scroll', () => {
     window.requestAnimationFrame(() => {
       const scrolled = window.pageYOffset;
       const hero = document.getElementById('hero');
-      
+
       if (hero && scrolled < window.innerHeight) {
         hero.style.transform = `translateY(${scrolled * 0.5}px)`;
       }
-      
+
       ticking = false;
     });
-    
+
     ticking = true;
   }
 });
@@ -150,8 +150,8 @@ function addToCalendar() {
     title: 'Selva & Aparna Wedding Celebration',
     description: 'Join us in celebrating the wedding of Selvakumar and Alagu Aparna. Your presence will make our day more special!',
     location: 'Sri Kumaran Mahal, Dharapuram, Tiruppur, Tamil Nadu',
-    start: '2026-08-23T18:00:00', // 6:00 PM
-    end: '2026-08-23T22:00:00',   // 10:00 PM (estimated)
+    start: '2026-08-24T11:00:00', // 11:00 AM
+    end: '2026-08-24T14:00:00',   // 2:00 PM
   };
 
   // Create ICS file content

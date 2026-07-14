@@ -4,7 +4,7 @@
  */
 
 // ===== CONFIGURATION =====
-const WEDDING_DATE = new Date('2026-08-23T18:00:00').getTime();
+const WEDDING_DATE = new Date('2026-08-24T11:00:00').getTime();
 
 // ===== DOM ELEMENTS =====
 const daysElement = document.getElementById('days');
